@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router' // Importante para marcar link ativo corretamente
+import { useRoute } from 'vue-router'
 import logo from '@/assets/images/logo_sl.png'
 
 const menuAberto = ref(false)
@@ -14,10 +14,7 @@ function fecharMenu() {
   menuAberto.value = false
 }
 
-// Verifica se a rota é ativa para estilização
 const isActive = (path) => route.path === path
-
-// Classes dinâmicas
 const linkBase = 'relative px-3 py-2 text-sm font-medium transition-all duration-300 ease-out flex items-center gap-2 group'
 const linkDesktop = 'text-blue-100 hover:text-white'
 const linkActiveDesktop = 'text-white'
@@ -48,8 +45,13 @@ const iconClass = 'w-5 h-5 shrink-0 transition-transform group-hover:scale-110 d
 
           <nav class="hidden md:flex items-center gap-1">
             <RouterLink to="/" :class="[linkBase, isActive('/') ? linkActiveDesktop : linkDesktop]">
-              <span class="relative z-10">Sobre</span>
+              <span class="relative z-10">Home</span>
               <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" :class="{'scale-x-100': isActive('/')}"></span>
+            </RouterLink>
+
+            <RouterLink to="/sobre" :class="[linkBase, isActive('/sobre') ? linkActiveDesktop : linkDesktop]">
+              <span class="relative z-10">Sobre</span>
+              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" :class="{'scale-x-100': isActive('/sobre')}"></span>
             </RouterLink>
 
             <RouterLink to="/servicos" :class="[linkBase, isActive('/servicos') ? linkActiveDesktop : linkDesktop]">
@@ -103,6 +105,11 @@ const iconClass = 'w-5 h-5 shrink-0 transition-transform group-hover:scale-110 d
         <nav class="relative w-72 h-full bg-linear-to-b from-blue-900 to-slate-900 shadow-2xl border-l border-white/10 flex flex-col p-6 pt-24 gap-2 overflow-y-auto">
 
           <RouterLink to="/" @click="fecharMenu" class="flex items-center gap-3 px-4 py-3 rounded-xl text-blue-100 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10" :class="{'bg-white/10 text-white border-white/20': isActive('/')}">
+            <svg class="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+            <span class="font-medium">Home</span>
+          </RouterLink>
+          
+          <RouterLink to="/sobre" @click="fecharMenu" class="flex items-center gap-3 px-4 py-3 rounded-xl text-blue-100 hover:bg-white/10 hover:text-white transition-all border border-transparent hover:border-white/10" :class="{'bg-white/10 text-white border-white/20': isActive('/sobre')}">
             <svg class="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             <span class="font-medium">Sobre</span>
           </RouterLink>
