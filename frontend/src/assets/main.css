@@ -1,19 +1,27 @@
 @import "tailwindcss";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 min-h-screen font-sans;
+    /* Dica: Se puder, use a fonte 'Montserrat' ou 'Roboto' no index.html do Google Fonts para combinar com a logo */
+  }
+
+  #app {
+    @apply min-h-screen flex flex-col;
+  }
 }
 
-body {
-  min-height: 100vh;
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
+/* Utilitário para esconder a scrollbar no menu mobile se necessário */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-#app {
-  min-height: 100vh;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
